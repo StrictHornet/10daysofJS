@@ -1,72 +1,68 @@
 //
 //
-var v1, v2, res;
-var ops = "";
+// var v1, v2, res;
+// var ops = "";
+var eqn = "";
+var val = "";
+var v1, v2, sn = "";
+
+
 
 function clickClr(){
-    document.querySelector("#res").innerHTML = "";
+    eqn = "";
+    document.querySelector("#res").innerHTML = eqn;
 }
 
 function clickOne(){
-    document.querySelector("#res").innerHTML += "1";
+    eqn += "1";
+    document.querySelector("#res").innerHTML = eqn;
+    val += "1";
 }
 
 function clickZero(){
-    document.querySelector("#res").innerHTML += "0";
+    eqn += "0";
+    document.querySelector("#res").innerHTML = eqn;
+    val += "0";
 }
 
 function clickSum(){
-    v1 = document.querySelector("#res").innerHTML;
-    document.querySelector("#res").innerHTML = "";
-    ops = "+"
+    eqn += "+";
+    document.querySelector("#res").innerHTML = eqn;
+    v1 = val;
+    val = "";
+    sn = "+"
 }
 
 function clickSub(){
-    v1 = document.querySelector("#res").innerHTML;
-    document.querySelector("#res").innerHTML = "";
-    ops = "-"
+    eqn += "-";
+    document.querySelector("#res").innerHTML = eqn;
+    v1 = val;
+    val = "";
+    sn = "-"
+}
+
+function clickMul(){
+    eqn += "*";
+    document.querySelector("#res").innerHTML = eqn;
+    v1 = val;
+    val = "";
+    sn = "*"
+}
+
+function clickDiv(){
+    eqn += "/";
+    document.querySelector("#res").innerHTML = eqn;
+    v1 = val;
+    val = "";
+    sn = "/";
 }
 
 function clickEql(){
-    v2 = document.querySelector("#res").innerHTML;
-    
-    v1 = Convert(v1);
-    v2 = Convert(v2);
-
-    switch (ops) {
-        case "+":
-            res = v1 + v2;
-            break;
-        
-        case "-":
-            res = v1 - v2;
-            break;
-    
-        default:
-            res = "Err"
-            break;
-    }
-    document.querySelector("#res").innerHTML = res;
+    v1 = parseInt(v1, 2);
+    v2 = parseInt(val, 2);
+    //eqn = v1+sn+v2;
+    eqn = Math.floor(eval(v1+sn+v2));
+    document.querySelector("#res").innerHTML = eqn;
+    val = "";
 }
 
-function Convert(v){
-    //CONVERT V1 AND V2 TO DECIMAL HERE 1001
-    //v1 = parseInt(v);
-
-    var i = 0;
-    var n = 0;
-    var r = 0;
-    var d = 0;
-    n = parseInt(v);
-
-    for(x in v){
-        r = n % 10;
-        if(r>0){
-            d = d + (r * 2**i);
-        }
-        i += 1;
-        n = Math.floor(n/10);
-    }
-
-    return d;
-}
